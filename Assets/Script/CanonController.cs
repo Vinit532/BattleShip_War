@@ -112,6 +112,9 @@ public class CanonController : MonoBehaviour
                 cannonBallRb.AddForce(firePoint.forward * firingForce);
             }
         }
+
+        // Invoke OnPlayerFire event for firing a cannonball.
+        OnPlayerFire?.Invoke("Cannonball", firingForce);
     }
 
     private void FireMissile()
@@ -137,5 +140,9 @@ public class CanonController : MonoBehaviour
         {
             missileRb.velocity = firePoint.forward * missileSpeed;
         }
+
+        // Invoke OnPlayerFire event for firing a missile.
+        OnPlayerFire?.Invoke("Missile", missileSpeed);
     }
+
 }

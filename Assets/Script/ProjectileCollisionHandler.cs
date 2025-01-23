@@ -26,6 +26,18 @@ public class ProjectileCollisionHandler : MonoBehaviour
             return;
         }
 
+        // Determine if the collision is a hit or a miss.
+        if (collision.gameObject.CompareTag("EnemyShip"))
+        {
+            // Notify UI about a hit.
+            OnPlayerHit?.Invoke();
+        }
+        else
+        {
+            // Notify UI about a miss.
+            OnPlayerMiss?.Invoke();
+        }
+
         // Instantiate the blast effect at the collision point.
         if (blastEffectPrefab != null)
         {
@@ -35,6 +47,7 @@ public class ProjectileCollisionHandler : MonoBehaviour
         // Destroy the projectile on collision.
         Destroy(gameObject);
     }
+
 
     private void InstantiateBlastEffect(Vector3 position, Vector3 normal)
     {

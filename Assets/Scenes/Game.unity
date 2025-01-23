@@ -1713,15 +1713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ead2db0e9302e46b6617fab8b288fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTotalFiresText: {fileID: 287890278}
-  playerWeaponTypeText: {fileID: 42177559}
-  playerHitsText: {fileID: 159757816}
-  playerMissesText: {fileID: 1875000031}
-  playerPowerUsedText: {fileID: 478010428}
-  enemyFiringSideText: {fileID: 963009920}
-  enemyFiringAngleText: {fileID: 926557042}
-  playerShip: {fileID: 4412613084947757}
-  enemyShip: {fileID: 8221787405994288352}
+  firingCountText: {fileID: 287890278}
+  hitsText: {fileID: 159757816}
+  missesText: {fileID: 1875000031}
+  powerUsageText: {fileID: 478010428}
 --- !u!4 &2008732976
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,16 +1859,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Cruiser (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8362550954472253948, guid: 9406ec8065b241946897a587a8c51e5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9406ec8065b241946897a587a8c51e5b, type: 3}
---- !u!4 &8221787405994288352 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7317601952889087896, guid: 9406ec8065b241946897a587a8c51e5b, type: 3}
-  m_PrefabInstance: {fileID: 3450732355812453007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
