@@ -30,6 +30,10 @@ public class CanonController : MonoBehaviour
 
     public static event Action<string, float, int> OnPlayerFire;
 
+
+    [Header("AI Settings")]
+    public bool isAIControlled = false; // Determines if this is AI-controlled
+
     void Start()
     {
         parentWeapon = transform.parent;
@@ -49,16 +53,41 @@ public class CanonController : MonoBehaviour
 
         if (!isParentWeaponActive) return;
 
-        HandleRotation();
+        //HandleRotation();
 
         // Handle firing input
-        if (Input.GetMouseButton(0))  // Left mouse button is held down
+        /*if (Input.GetMouseButton(0))  // Left mouse button is held down
         {
             ChargeCannonBall();
         }
         else if (Input.GetMouseButtonUp(0))  // Left mouse button is released
         {
             FireProjectile();
+        } */
+        if (!isAIControlled)
+        {
+            HandleRotation();
+
+            if (canFireMissiles && missilePrefab != null) 
+            { 
+                if (Input.GetMouseButtonUp(0)) 
+                {
+                    FireMissile();
+                }
+                
+            }
+            else
+            {
+                // Player input for firing
+                if (Input.GetMouseButton(0))
+                {
+                    ChargeCannonBall();
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    FireCannonBall();
+                }
+            } 
         }
     }
 
@@ -96,7 +125,7 @@ public class CanonController : MonoBehaviour
     }
 
     // Fire cannon balls with the current power
-    private void FireCannonBall()
+    public void FireCannonBall()
     {
         int projectilesFired = firePoints.Length;
         foreach (Transform firePoint in firePoints)
@@ -122,7 +151,7 @@ public class CanonController : MonoBehaviour
     }
 
     // Fire missile as before
-    private void FireMissile()
+    public void FireMissile()
     {
         int projectilesFired = 1;
         Transform firePoint = firePoints[0];
