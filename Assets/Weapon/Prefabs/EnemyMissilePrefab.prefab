@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3577593200535734299}
   - component: {fileID: 8100877288676361206}
   - component: {fileID: 5252092963030199918}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SmokeFireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 5264022495465004345}
   - component: {fileID: 7546864798784341590}
   - component: {fileID: 3409574741367216411}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: EnemyMissilePrefab
   m_TagString: EnemyMissile
   m_Icon: {fileID: 0}

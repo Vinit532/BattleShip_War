@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8346300834921413645}
   - component: {fileID: 6749359362966384198}
   - component: {fileID: 7509068876019229252}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SmokeFireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 2811824363961189606}
   - component: {fileID: 2759998469536616010}
   - component: {fileID: 159377612652008571}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: EnemyCannonBall
   m_TagString: EnemyCannonBall
   m_Icon: {fileID: 0}

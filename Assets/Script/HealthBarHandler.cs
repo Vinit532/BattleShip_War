@@ -5,18 +5,18 @@ public class HealthBarHandler : MonoBehaviour
 {
     [Header("Health Settings")]
     public Image healthBar; // Reference to the UI health bar image
-    public float maxHealth = 100f; // Max health value
-    private float currentHealth; // Current health of the battleship
+    public float maxHealth = 100f; // Maximum health value
+    private float currentHealth; // Current health value
 
-    [Header("Tag Settings")]
-    public bool isPlayer; // Is this the player's battleship?
-    public string enemyMissileTag = "EnemyMissile"; // Tag for enemy missiles
-    public string enemyCannonBallTag = "EnemyCannonBall"; // Tag for enemy cannonballs
-    public string playerMissileTag = "PlayerMissile"; // Tag for player missiles
-    public string playerCannonBallTag = "PlayerCannonBall"; // Tag for player cannonballs
+    [Header("Layer Settings")]
+    public LayerMask playerProjectileLayer; // Layer for projectiles that hit the Player
+    public LayerMask enemyProjectileLayer; // Layer for projectiles that hit the Enemy
 
     [Header("Game Over Settings")]
     public GameObject gameOverUI; // Reference to the Game Over UI
+
+    [Header("Object Type")]
+    public bool isPlayer; // Is this the player's battleship?
 
     void Start()
     {
@@ -36,29 +36,27 @@ public class HealthBarHandler : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+   
+    private void OnCollisionEnter(Collision collision)
     {
-        // Check if this is the player's battleship
+        Debug.Log($"Collided with something");
         if (isPlayer)
         {
-            // If hit by enemy projectiles
-            if (other.CompareTag(enemyMissileTag) || other.CompareTag(enemyCannonBallTag))
+            if (IsInLayerMask(collision.gameObject, enemyProjectileLayer))
             {
-                Debug.Log("Player Battleship hit by " + other.tag);
+                Debug.Log("Player Battleship hit by Enemy Projectile");
                 TakeDamage(5f);
             }
         }
         else
         {
-            // If hit by player projectiles
-            if (other.CompareTag(playerMissileTag) || other.CompareTag(playerCannonBallTag))
+            if (IsInLayerMask(collision.gameObject, playerProjectileLayer))
             {
-                Debug.Log("AI Battleship hit by " + other.tag);
+                Debug.Log("AI Battleship hit by Player Projectile");
                 TakeDamage(5f);
             }
         }
     }
-
     private void TakeDamage(float damage)
     {
         // Decrease health
@@ -69,6 +67,9 @@ public class HealthBarHandler : MonoBehaviour
         {
             healthBar.fillAmount = currentHealth / maxHealth;
         }
+
+        // Log health updates for debugging
+        Debug.Log($"{gameObject.name}'s current health: {currentHealth}");
 
         // Check for health depletion
         if (currentHealth <= 0f)
@@ -89,5 +90,11 @@ public class HealthBarHandler : MonoBehaviour
 
         // Pause the game
         Time.timeScale = 0f;
+    }
+
+    private bool IsInLayerMask(GameObject obj, LayerMask layerMask)
+    {
+        // Check if the object's layer is in the specified layer mask
+        return (layerMask.value & (1 << obj.layer)) > 0;
     }
 }

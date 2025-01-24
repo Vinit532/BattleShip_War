@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8346300834921413645}
   - component: {fileID: 6749359362966384198}
   - component: {fileID: 7509068876019229252}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: SmokeFireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 2811824363961189606}
   - component: {fileID: 2759998469536616010}
   - component: {fileID: 2499340575308021847}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: SmallCannonBall
   m_TagString: PlayerCannonBall
   m_Icon: {fileID: 0}

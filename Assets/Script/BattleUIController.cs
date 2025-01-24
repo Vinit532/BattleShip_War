@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BattleUIController : MonoBehaviour
 {
@@ -56,5 +57,14 @@ public class BattleUIController : MonoBehaviour
         hitsText.text = $"Hits: {hits}";
         missesText.text = $"Misses: {misses}";
         weaponTypeText.text = $"Weapon Type: {currentWeaponType}";
+    }
+
+    public void RestartGame()
+    {
+        // Reset the time scale in case it was paused
+        Time.timeScale = 1f;
+
+        // Reload the current active scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
