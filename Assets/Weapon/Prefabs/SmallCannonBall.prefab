@@ -4980,5 +4980,5 @@ MonoBehaviour:
   avoidCollisionWithTag: Player
   avoidCollisionWithLayer:
     serializedVersion: 2
-    m_Bits: 24
+    m_Bits: 152
   blastEffectPrefab: {fileID: 2195917716561088991, guid: ab7b68bcb7b53bf46afbc3c35476e83d, type: 3}
