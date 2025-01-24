@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 5038515033357198730}
   - component: {fileID: 2811824363961189606}
   - component: {fileID: 2759998469536616010}
-  - component: {fileID: 8931238914775377479}
+  - component: {fileID: 2499340575308021847}
   m_Layer: 3
   m_Name: SmallCannonBall
   m_TagString: PlayerCannonBall
@@ -4965,7 +4965,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8931238914775377479
+--- !u!114 &2499340575308021847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4981,4 +4981,4 @@ MonoBehaviour:
   avoidCollisionWithLayer:
     serializedVersion: 2
     m_Bits: 24
-  blastEffectPrefab: {fileID: 4043861290571993607, guid: 21698dd4e2cc6364dbfc58f2b4a6ec54, type: 3}
+  blastEffectPrefab: {fileID: 2195917716561088991, guid: ab7b68bcb7b53bf46afbc3c35476e83d, type: 3}

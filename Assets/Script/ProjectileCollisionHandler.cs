@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileCollisionHandler : MonoBehaviour
@@ -14,47 +12,39 @@ public class ProjectileCollisionHandler : MonoBehaviour
     public static event Action OnPlayerHit;
     public static event Action OnPlayerMiss;
 
-    // Trigger these events where collisions with EnemyShip or other objects occur.
-
-
+    // On collision, check the type of object and update stats accordingly
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the collided object has the tag or layer we want to avoid.
+        // Ensure the object is not one we are avoiding
         if (collision.gameObject.CompareTag(avoidCollisionWithTag) || ((1 << collision.gameObject.layer) & avoidCollisionWithLayer) != 0)
         {
-            // If the collision is with an object we should avoid, do nothing.
-            return;
+            return;  // Do nothing if the collision is with an unwanted object
         }
 
-        // Determine if the collision is a hit or a miss.
-        if (collision.gameObject.CompareTag("EnemyShip"))
+        // If the projectile collides with an object tagged "EnemyShip" (on Enemy layer)
+        if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.layer == LayerMask.NameToLayer("EnemyShip"))
         {
-            // Notify UI about a hit.
-            OnPlayerHit?.Invoke();
+            OnPlayerHit?.Invoke();  // Increment hits counter in BattleUIController
         }
         else
         {
-            // Notify UI about a miss.
-            OnPlayerMiss?.Invoke();
+            OnPlayerMiss?.Invoke();  // Increment misses counter in BattleUIController
         }
 
-        // Instantiate the blast effect at the collision point.
+        // Instantiate blast effect at the collision point
         if (blastEffectPrefab != null)
         {
             InstantiateBlastEffect(collision.contacts[0].point, collision.contacts[0].normal);
         }
 
-        // Destroy the projectile on collision.
+        // Destroy the projectile after collision
         Destroy(gameObject);
     }
 
-
     private void InstantiateBlastEffect(Vector3 position, Vector3 normal)
     {
-        // Instantiate the blast effect prefab at the collision point with the correct rotation.
+        // Instantiate the blast effect prefab at the collision point with correct rotation
         GameObject blastEffect = Instantiate(blastEffectPrefab, position, Quaternion.LookRotation(normal));
-
-        // Destroy the particle effect after its duration (1 second).
-        Destroy(blastEffect, 1f);
+        Destroy(blastEffect, 1f);  // Destroy the blast effect after 1 second
     }
 }

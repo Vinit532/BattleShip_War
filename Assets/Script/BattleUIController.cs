@@ -9,11 +9,12 @@ public class BattleUIController : MonoBehaviour
     public TMP_Text hitsText;
     public TMP_Text missesText;
     public TMP_Text powerUsageText;
+    public TMP_Text weaponTypeText;
 
     private int firingCount = 0;
     private int hits = 0;
     private int misses = 0;
-    private float totalPowerUsed = 0f;
+    private string currentWeaponType;
 
     void OnEnable()
     {
@@ -29,10 +30,11 @@ public class BattleUIController : MonoBehaviour
         ProjectileCollisionHandler.OnPlayerMiss -= UpdateMisses;
     }
 
-    private void UpdateFiringStats(string weaponType, float powerUsed)
+    private void UpdateFiringStats(string weaponType, float firingPower, int projectilesFired)
     {
-        firingCount++;
-        totalPowerUsed += powerUsed;
+        firingCount += projectilesFired;
+        currentWeaponType = weaponType;
+        powerUsageText.text = $"Power Usage: {firingPower:F1}"; // Always display updated power usage
         RefreshUI();
     }
 
@@ -53,6 +55,6 @@ public class BattleUIController : MonoBehaviour
         firingCountText.text = $"Firing Count: {firingCount}";
         hitsText.text = $"Hits: {hits}";
         missesText.text = $"Misses: {misses}";
-        powerUsageText.text = $"Power Usage: {totalPowerUsed:F1}";
+        weaponTypeText.text = $"Weapon Type: {currentWeaponType}";
     }
 }

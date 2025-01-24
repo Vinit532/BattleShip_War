@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1793,6 +1793,7 @@ MonoBehaviour:
   hitsText: {fileID: 159757816}
   missesText: {fileID: 1875000031}
   powerUsageText: {fileID: 478010428}
+  weaponTypeText: {fileID: 42177559}
 --- !u!4 &2008732976
 Transform:
   m_ObjectHideFlags: 0
@@ -1805,6 +1806,112 @@ Transform:
   m_LocalPosition: {x: -33.85697, y: 29.874512, z: -42.66188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2076268926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2076268930}
+  - component: {fileID: 2076268929}
+  - component: {fileID: 2076268928}
+  - component: {fileID: 2076268927}
+  m_Layer: 0
+  m_Name: BottomLandOfSea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &2076268927
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076268926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2076268928
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076268926}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2076268929
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076268926}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2076268930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076268926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 800, y: 800, z: 800}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1902,14 +2009,174 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1371137555038457597, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 1371137555038457597, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1371137555038457597, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 1371137555038457597, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 1371137555038457597, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512384858717200062, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 2512384858717200062, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512384858717200062, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 2512384858717200062, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 2512384858717200062, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956693995545542960, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 3956693995545542960, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956693995545542960, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 3956693995545542960, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 3956693995545542960, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 4155911817074182018, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: m_Name
       value: India_Cruiser
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323913150887294150, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4323913150887294150, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323913150887294150, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4323913150887294150, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4323913150887294150, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608956842880498198, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4608956842880498198, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608956842880498198, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4608956842880498198, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 4608956842880498198, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130532404531048104, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6130532404531048104, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130532404531048104, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6130532404531048104, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6130532404531048104, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392137895984077865, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6392137895984077865, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392137895984077865, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6392137895984077865, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 6392137895984077865, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 6917517191900728746, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: waterPlane
       value: 
       objectReference: {fileID: 275571009}
+    - target: {fileID: 7183303143142040756, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 7183303143142040756, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183303143142040756, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 7183303143142040756, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 7183303143142040756, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 8221787406231355205, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32
@@ -1949,6 +2216,26 @@ PrefabInstance:
     - target: {fileID: 8221787406231355205, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917631302496326921, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBar
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 8917631302496326921, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: missileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917631302496326921, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerBarImage
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 8917631302496326921, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: powerChargeUI
+      value: 
+      objectReference: {fileID: 611927409}
+    - target: {fileID: 8917631302496326921, guid: d997834394c11d84784452a17c68a283, type: 3}
+      propertyPath: maxFiringForce
+      value: 3000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2033,3 +2320,4 @@ SceneRoots:
   - {fileID: 144258931}
   - {fileID: 1763612397}
   - {fileID: 2008732976}
+  - {fileID: 2076268930}

@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 2860802861398929991}
   - component: {fileID: 5264022495465004345}
   - component: {fileID: 7546864798784341590}
-  - component: {fileID: 7980736668651328093}
+  - component: {fileID: 3409574741367216411}
   m_Layer: 6
   m_Name: EnemyMissilePrefab
   m_TagString: EnemyMissile
@@ -4967,7 +4967,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 96
   m_CollisionDetection: 0
---- !u!114 &7980736668651328093
+--- !u!114 &3409574741367216411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4983,4 +4983,4 @@ MonoBehaviour:
   avoidCollisionWithLayer:
     serializedVersion: 2
     m_Bits: 80
-  blastEffectPrefab: {fileID: 4043861290571993607, guid: 21698dd4e2cc6364dbfc58f2b4a6ec54, type: 3}
+  blastEffectPrefab: {fileID: 2195917716561088991, guid: ab7b68bcb7b53bf46afbc3c35476e83d, type: 3}
