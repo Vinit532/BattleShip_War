@@ -15,6 +15,10 @@ public class HealthBarHandler : MonoBehaviour
     [Header("Game Over Settings")]
     public GameObject gameOverUI; // Reference to the Game Over UI
 
+    [Header("Victory/Lose UI")]
+    public GameObject VictoryImage; // UI Image displayed when Player wins
+    public GameObject LoseGameImage; // UI Image displayed when Player loses
+
     [Header("Object Type")]
     public bool isPlayer; // Is this the player's battleship?
 
@@ -29,17 +33,25 @@ public class HealthBarHandler : MonoBehaviour
             healthBar.fillAmount = 1f;
         }
 
-        // Ensure Game Over UI is disabled initially
+        // Ensure all UI elements are disabled initially
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
         }
+
+        if (VictoryImage != null)
+        {
+            VictoryImage.SetActive(false);
+        }
+
+        if (LoseGameImage != null)
+        {
+            LoseGameImage.SetActive(false);
+        }
     }
 
-   
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Collided with something");
         if (isPlayer)
         {
             if (IsInLayerMask(collision.gameObject, enemyProjectileLayer))
@@ -57,6 +69,7 @@ public class HealthBarHandler : MonoBehaviour
             }
         }
     }
+
     private void TakeDamage(float damage)
     {
         // Decrease health
@@ -82,7 +95,27 @@ public class HealthBarHandler : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} is destroyed!");
 
-        // Activate Game Over UI
+        // Determine whether the Player or AI lost
+        if (isPlayer)
+        {
+            // If the Player loses
+            Debug.Log("Game Over: Player Lost!");
+            if (LoseGameImage != null)
+            {
+                LoseGameImage.SetActive(true); // Show Lose UI
+            }
+        }
+        else
+        {
+            // If the AI loses
+            Debug.Log("Game Over: Player Wins!");
+            if (VictoryImage != null)
+            {
+                VictoryImage.SetActive(true); // Show Victory UI
+            }
+        }
+
+        // Activate Game Over UI (optional, if you need a global UI for game over)
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);

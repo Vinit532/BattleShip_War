@@ -67,4 +67,8 @@ public class BattleUIController : MonoBehaviour
         // Reload the current active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
