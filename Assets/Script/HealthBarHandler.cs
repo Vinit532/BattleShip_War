@@ -22,6 +22,7 @@ public class HealthBarHandler : MonoBehaviour
     [Header("Object Type")]
     public bool isPlayer; // Is this the player's battleship?
 
+    public AudioSource weaponSound;
     void Start()
     {
         // Initialize health
@@ -72,6 +73,7 @@ public class HealthBarHandler : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
+        weaponSound.Play();
         // Decrease health
         currentHealth -= damage;
 
@@ -89,6 +91,8 @@ public class HealthBarHandler : MonoBehaviour
         {
             HandleGameOver();
         }
+
+       // weaponSound.Stop();
     }
 
     private void HandleGameOver()

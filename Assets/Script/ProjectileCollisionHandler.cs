@@ -12,9 +12,12 @@ public class ProjectileCollisionHandler : MonoBehaviour
     public static event Action OnPlayerHit;
     public static event Action OnPlayerMiss;
 
+    public AudioSource weaponSound;
+   
     // On collision, check the type of object and update stats accordingly
     void OnCollisionEnter(Collision collision)
     {
+        weaponSound.Stop();
         // Ensure the object is not one we are avoiding
         if (collision.gameObject.CompareTag(avoidCollisionWithTag) || ((1 << collision.gameObject.layer) & avoidCollisionWithLayer) != 0)
         {
@@ -37,7 +40,8 @@ public class ProjectileCollisionHandler : MonoBehaviour
             InstantiateBlastEffect(collision.contacts[0].point, collision.contacts[0].normal);
         }
 
-        // Destroy the projectile after collision
+       
+        
         Destroy(gameObject);
     }
 
