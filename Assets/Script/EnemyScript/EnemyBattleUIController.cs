@@ -17,16 +17,16 @@ public class EnemyBattleUIController : MonoBehaviour
 
     void OnEnable()
     {
-        CanonController.OnPlayerFire += UpdateFiringStats;
-        ProjectileCollisionHandler.OnPlayerHit += UpdateHits;
-        ProjectileCollisionHandler.OnPlayerMiss += UpdateMisses;
+        CanonController.OnEnemyFire += UpdateFiringStats;
+        ProjectileCollisionHandler.OnEnemyHit += UpdateHits;
+        ProjectileCollisionHandler.OnEnemyMiss += UpdateMisses;
     }
 
     void OnDisable()
     {
-        CanonController.OnPlayerFire -= UpdateFiringStats;
-        ProjectileCollisionHandler.OnPlayerHit -= UpdateHits;
-        ProjectileCollisionHandler.OnPlayerMiss -= UpdateMisses;
+        CanonController.OnEnemyFire -= UpdateFiringStats;
+        ProjectileCollisionHandler.OnEnemyHit -= UpdateHits;
+        ProjectileCollisionHandler.OnEnemyMiss -= UpdateMisses;
     }
 
     private void UpdateFiringStats(string weaponType, float firingPower, int projectilesFired)

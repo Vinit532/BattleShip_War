@@ -4984,6 +4984,7 @@ MonoBehaviour:
     m_Bits: 0
   blastEffectPrefab: {fileID: 2195917716561088991, guid: ab7b68bcb7b53bf46afbc3c35476e83d, type: 3}
   weaponSound: {fileID: -1567686385650013002}
+  isPlayerAttack: 1
 --- !u!82 &-1567686385650013002
 AudioSource:
   m_ObjectHideFlags: 0

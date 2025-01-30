@@ -12,7 +12,12 @@ public class ProjectileCollisionHandler : MonoBehaviour
     public static event Action OnPlayerHit;
     public static event Action OnPlayerMiss;
 
+    public static event Action OnEnemyHit;
+    public static event Action OnEnemyMiss;
+
     public AudioSource weaponSound;
+
+    [SerializeField] bool isPlayerAttack;
    
     // On collision, check the type of object and update stats accordingly
     void OnCollisionEnter(Collision collision)
@@ -23,16 +28,31 @@ public class ProjectileCollisionHandler : MonoBehaviour
         {
             return;  // Do nothing if the collision is with an unwanted object
         }
-
-        // If the projectile collides with an object tagged "EnemyShip" (on Enemy layer)
-        if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.layer == LayerMask.NameToLayer("EnemyShip"))
+        if (isPlayerAttack)
         {
-            OnPlayerHit?.Invoke();  // Increment hits counter in BattleUIController
+            if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.layer == LayerMask.NameToLayer("EnemyShip"))
+            {
+                OnPlayerHit?.Invoke();  // Increment hits counter in BattleUIController
+            }
+            else
+            {
+                OnPlayerMiss?.Invoke();  // Increment misses counter in BattleUIController
+            }
+            // If the projectile collides with an object tagged "EnemyShip" (on Enemy layer)
         }
-        else
+        else 
         {
-            OnPlayerMiss?.Invoke();  // Increment misses counter in BattleUIController
+            if (collision.gameObject.CompareTag("Player") && collision.gameObject.layer == LayerMask.NameToLayer("PlayerShip"))
+            {
+                OnEnemyHit?.Invoke();  // Increment hits counter in BattleUIController
+            }
+            else
+            {
+                OnEnemyMiss?.Invoke();  // Increment misses counter in BattleUIController
+            }
         }
+        
+       
 
         // Instantiate blast effect at the collision point
         if (blastEffectPrefab != null)

@@ -31,13 +31,15 @@ public class CanonController : MonoBehaviour
     public static event Action<string, float, int> OnPlayerFire;
 
 
+    public static event Action<string, float, int> OnEnemyFire;
+
     [Header("AI Settings")]
     public bool isAIControlled = false; // Determines if this is AI-controlled
 
     void Start()
     {
         parentWeapon = transform.parent;
-        if (cruiserController == null)
+        if (cruiserController == null && !isAIControlled)
         {
             Debug.LogError("CruiserController reference is missing!");
         }
@@ -145,7 +147,14 @@ public class CanonController : MonoBehaviour
         }
 
         // Reset power and update UI
-        OnPlayerFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
+        if (!isAIControlled)
+        {
+            OnPlayerFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
+        }
+        else
+        {
+            OnEnemyFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
+        }
         currentPower = 0f;
         powerChargeUI.fillAmount = 0f;
     }
@@ -168,7 +177,15 @@ public class CanonController : MonoBehaviour
             missileRb.velocity = firePoint.forward * missileSpeed;
         }
 
-        OnPlayerFire?.Invoke("Missile", missileSpeed, projectilesFired); // Notify firing stats
+        if (!isAIControlled)
+        {
+            OnPlayerFire?.Invoke("Missile", missileSpeed, projectilesFired); // Notify firing stats
+        }
+        else
+        {
+            OnEnemyFire?.Invoke("Missile", missileSpeed, projectilesFired);
+        }
+        
         powerChargeUI.fillAmount = 0f;
     }
 }
