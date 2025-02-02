@@ -56,7 +56,7 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _Blend: 0
     - _CastShadows: 1
-    - _Caustic_Strength: 0.68
+    - _Caustic_Strength: 0.4
     - _Cull: 0
     - _Cutoff: 0
     - _CutoffSpeed: -0.4
@@ -81,7 +81,7 @@ Material:
     - _SrcBlend: 5
     - _Surface: 1
     - _Tiling: 0.1
-    - _Transparency: 1
+    - _Transparency: 0.5
     - _UseFoam: 1
     - _Use_Foam: 1
     - _WaveDist: 5
@@ -94,7 +94,7 @@ Material:
     - _ZWriteControl: 1
     m_Colors:
     - _Color: {r: 0.021404423, g: 0.18800715, b: 0.3490566, a: 1}
-    - _EdgeColor: {r: 0.14195444, g: 0.20754719, b: 0.17147118, a: 1}
+    - _EdgeColor: {r: 0, g: 0.3844817, b: 0.5188679, a: 1}
     - _Edge_Color: {r: 0.2507565, g: 0.3301887, b: 0.28799033, a: 1}
     - _FoamColor: {r: 2.3647857, g: 4.6853695, b: 4.451742, a: 1}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}

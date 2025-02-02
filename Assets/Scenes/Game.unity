@@ -443,6 +443,7 @@ RectTransform:
   - {fileID: 2082178588}
   - {fileID: 126412515}
   - {fileID: 230802009}
+  - {fileID: 1747343308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2466,6 +2467,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994528807}
   m_CullTransparentMesh: 1
+--- !u!4 &1032139848 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7550937174805251460, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
+  m_PrefabInstance: {fileID: 3311294965968550740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1066566289
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3350,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693667012}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1747343307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747343308}
+  - component: {fileID: 1747343310}
+  - component: {fileID: 1747343309}
+  m_Layer: 5
+  m_Name: Aim_Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1747343308
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747343307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 144258931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1747343309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747343307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6ef44b3821b80a047b386c41db499404, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1747343310
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747343307}
+  m_CullTransparentMesh: 1
 --- !u!1 &1763612394
 GameObject:
   m_ObjectHideFlags: 0
@@ -4266,7 +4347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917517191900728746, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: turnSpeed
-      value: 2000
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 6917517191900728746, guid: d997834394c11d84784452a17c68a283, type: 3}
       propertyPath: waterPlane
@@ -4473,7 +4554,7 @@ PrefabInstance:
       objectReference: {fileID: 8199465228235915307, guid: 464ea6f56b66a9c43be02951bf902701, type: 3}
     - target: {fileID: 4089570198182056814, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4946766004672648690, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: missilePrefab
@@ -4556,6 +4637,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8199465228235915307, guid: 464ea6f56b66a9c43be02951bf902701, type: 3}
     - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
+      propertyPath: maxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: attackRange
       value: 2000
       objectReference: {fileID: 0}
@@ -4563,6 +4648,18 @@ PrefabInstance:
       propertyPath: playerCruiser
       value: 
       objectReference: {fileID: 4412613084947757}
+    - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
+      propertyPath: weaponsParent
+      value: 
+      objectReference: {fileID: 1032139848}
+    - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
+      propertyPath: firingInterval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
+      propertyPath: minSafeDistance
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8830995186102304426, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: m_Name
       value: Enemy_Battleship

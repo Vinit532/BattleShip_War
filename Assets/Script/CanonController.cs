@@ -157,7 +157,7 @@ public class CanonController : MonoBehaviour
         }
         currentPower = 0f;
         powerChargeUI.fillAmount = 0f;
-    }
+    } 
 
     // Fire missile as before
     public void FireMissile()
