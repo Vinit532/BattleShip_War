@@ -10,6 +10,7 @@ TagManager:
   - EnemyCannonBall
   - PlayerMissile
   - EnemyMissile
+  - SeaBottom
   layers:
   - Default
   - TransparentFX

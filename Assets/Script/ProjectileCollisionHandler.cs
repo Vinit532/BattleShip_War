@@ -57,7 +57,14 @@ public class ProjectileCollisionHandler : MonoBehaviour
         // Instantiate blast effect at the collision point
         if (blastEffectPrefab != null)
         {
-            InstantiateBlastEffect(collision.contacts[0].point, collision.contacts[0].normal);
+            if (collision.gameObject.CompareTag("SeaBottom"))
+            {
+                Debug.Log("Weapon crashed to Sea Bottom");
+            }
+            else
+            {
+                InstantiateBlastEffect(collision.contacts[0].point, collision.contacts[0].normal);
+            }
         }
 
        
