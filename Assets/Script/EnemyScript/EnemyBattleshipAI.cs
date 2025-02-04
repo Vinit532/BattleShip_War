@@ -78,12 +78,20 @@ public class EnemyBattleshipAI : MonoBehaviour
             // Smoothly decelerate as we approach the safe distance
             navMeshAgent.speed = Mathf.Lerp(navMeshAgent.speed, 0, Time.deltaTime * 2f);
         }
-        else
+        else if (distanceToPlayer > cannonballRange)
         {
-            // Move towards the player at full speed
+            // Move towards the player only if they are out of cannonball range
             navMeshAgent.speed = maxSpeed;
             navMeshAgent.SetDestination(playerCruiser.position);
         }
+        else
+        {
+            // Stop moving if within cannonball range
+            navMeshAgent.speed = 0;
+        }
+
+        // Rotate weapons to aim at the player
+        RotateWeaponsTowardsPlayer();
 
         // Check attack range
         if (distanceToPlayer <= attackRange)
@@ -96,6 +104,38 @@ public class EnemyBattleshipAI : MonoBehaviour
                 firingCooldown = firingInterval; // Reset cooldown
             }
         }
+    }
+
+    private void RotateWeaponsTowardsPlayer()
+    {
+        if (weaponControllers == null || weaponControllers.Length == 0) return;
+
+        foreach (var weapon in weaponControllers)
+        {
+            if (weapon == null) continue;
+
+            // Calculate the direction to the player
+            Vector3 directionToPlayer = (playerCruiser.position - weapon.transform.position).normalized;
+
+            // Rotate the weapon horizontally
+            Quaternion targetHorizontalRotation = Quaternion.LookRotation(directionToPlayer);
+            weapon.transform.rotation = Quaternion.RotateTowards(weapon.transform.rotation, targetHorizontalRotation, turnSpeed * Time.deltaTime);
+
+            // Rotate the gun vertically
+            RotateGunVertically(weapon, directionToPlayer);
+        }
+    }
+
+    private void RotateGunVertically(CanonController weapon, Vector3 directionToPlayer)
+    {
+        // Calculate the vertical angle to aim at the player
+        float verticalAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+        // Clamp the vertical angle to the weapon's rotation limits
+        verticalAngle = Mathf.Clamp(verticalAngle, weapon.minRotationAngle, weapon.maxRotationAngle);
+
+        // Apply the vertical rotation to the gun
+        weapon.transform.localEulerAngles = new Vector3(verticalAngle, weapon.transform.localEulerAngles.y, weapon.transform.localEulerAngles.z);
     }
 
     private void DecideAndFire(float distanceToPlayer)
@@ -125,15 +165,9 @@ public class EnemyBattleshipAI : MonoBehaviour
                 // Calculate dynamic force for cannonballs based on distance
                 float force = Mathf.Lerp(minCannonballForce, maxCannonballForce, distanceToPlayer / attackRange);
 
-                // Temporarily modify the firingForce in CanonController
-                float originalFiringForce = bestWeapon.firingForce;
-                bestWeapon.firingForce = force;
-
-                // Fire the cannonball
+                // Simulate charging the cannonball
+                bestWeapon.currentPower = Mathf.Clamp01(distanceToPlayer / cannonballRange);
                 bestWeapon.FireCannonBall();
-
-                // Restore the original firingForce
-                bestWeapon.firingForce = originalFiringForce;
             }
         }
     }

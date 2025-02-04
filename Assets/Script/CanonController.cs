@@ -21,7 +21,7 @@ public class CanonController : MonoBehaviour
     [Header("UI Settings")]
     public Image powerChargeUI;  // UI image to show cannon ball charge
     public float maxPower = 1f;  // Max charge power
-    private float currentPower = 0f;  // Current charge power
+    public float currentPower = 0f;  // Current charge power
 
     [Header("Dependencies")]
     public CruiserController cruiserController;
@@ -55,17 +55,6 @@ public class CanonController : MonoBehaviour
 
         if (!isParentWeaponActive) return;
 
-        //HandleRotation();
-
-        // Handle firing input
-        /*if (Input.GetMouseButton(0))  // Left mouse button is held down
-        {
-            ChargeCannonBall();
-        }
-        else if (Input.GetMouseButtonUp(0))  // Left mouse button is released
-        {
-            FireProjectile();
-        } */
         if (!isAIControlled)
         {
             HandleRotation();
