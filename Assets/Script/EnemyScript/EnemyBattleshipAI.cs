@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,8 +26,6 @@ public class EnemyBattleshipAI : MonoBehaviour
 
     [Header("Dependencies")]
     public NavMeshAgent navMeshAgent; // Reference to the NavMeshAgent component
-
-    private bool fireMissiles = false; // Toggle between missiles and cannonballs
 
     void Start()
     {
@@ -140,59 +139,56 @@ public class EnemyBattleshipAI : MonoBehaviour
 
     private void DecideAndFire(float distanceToPlayer)
     {
-        if (weaponControllers == null || weaponControllers.Length == 0) return;
+        if (weaponControllers == null || weaponControllers.Length == 0)
+            return;
 
-        // Decide whether to fire missiles or cannonballs based on distance
-        if (distanceToPlayer >= missileRange)
-        {
-            fireMissiles = true; // Prefer missiles at longer range
-        }
-        else if (distanceToPlayer <= cannonballRange)
-        {
-            fireMissiles = false; // Prefer cannonballs at closer range
-        }
+        // Get all available weapons to fire based on the player's position and distance
+        List<CanonController> availableWeapons = GetAvailableWeaponsForFiring(distanceToPlayer);
 
-        // Find the best weapon to fire based on the player's position
-        CanonController bestWeapon = GetBestWeaponForFiring();
-        if (bestWeapon != null)
+        // Fire all available weapons
+        foreach (CanonController weapon in availableWeapons)
         {
-            if (fireMissiles && bestWeapon.canFireMissiles)
+            if (weapon.canFireMissiles)
             {
-                bestWeapon.FireMissile();
+                weapon.FireMissile();
+            }
+            else if (weapon.canFireCannonBall)
+            {
+                float force = Mathf.Lerp(minCannonballForce, maxCannonballForce, 1 - Mathf.Clamp01((distanceToPlayer - cannonballRange) / (missileRange - cannonballRange)));
+                weapon.currentPower = Mathf.Clamp01(distanceToPlayer / cannonballRange);
+                weapon.FireCannonBall();
             }
             else
             {
                 // Calculate dynamic force for cannonballs based on distance
                 float force = Mathf.Lerp(minCannonballForce, maxCannonballForce, distanceToPlayer / attackRange);
 
-                // Simulate charging the cannonball
-                bestWeapon.currentPower = Mathf.Clamp01(distanceToPlayer / cannonballRange);
-                bestWeapon.FireCannonBall();
+                weapon.currentPower = Mathf.Clamp01(distanceToPlayer / cannonballRange);
+                weapon.FireCannonBall();
             }
         }
     }
 
-    private CanonController GetBestWeaponForFiring()
+    private List<CanonController> GetAvailableWeaponsForFiring(float distanceToPlayer)
     {
-        CanonController bestWeapon = null;
-        float bestAngle = float.MaxValue;
+        List<CanonController> availableWeapons = new List<CanonController>();
+
+
 
         foreach (var weapon in weaponControllers)
         {
             if (weapon == null) continue;
-
-            // Calculate the angle between the weapon's forward direction and the player's position
-            Vector3 directionToPlayer = (playerCruiser.position - weapon.transform.position).normalized;
-            float angle = Vector3.Angle(weapon.transform.forward, directionToPlayer);
-
-            // Choose the weapon with the smallest angle to the player
-            if (angle < bestAngle)
+            // Check if the weapon is in range and can fire
+            if (distanceToPlayer > missileRange && weapon.canFireMissiles && weapon.isLoaded)
             {
-                bestAngle = angle;
-                bestWeapon = weapon;
+                availableWeapons.Add(weapon);
+            }
+            else if (distanceToPlayer <= cannonballRange)
+            {
+                availableWeapons.Add(weapon);
             }
         }
 
-        return bestWeapon;
+        return availableWeapons;
     }
 }

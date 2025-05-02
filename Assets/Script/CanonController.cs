@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,10 @@ public class CanonController : MonoBehaviour
     public float missileSpeed = 100f;
     public Transform[] firePoints;
     public bool canFireMissiles = false;
+
+    // New properties
+    public bool isLoaded;
+    public bool canFireCannonBall;
 
     [Header("UI Settings")]
     public Image powerChargeUI;  // UI image to show cannon ball charge
@@ -43,6 +48,8 @@ public class CanonController : MonoBehaviour
         {
             Debug.LogError("CruiserController reference is missing!");
         }
+        isLoaded = true;
+        canFireCannonBall = true;
     }
 
     void Update()
@@ -59,13 +66,13 @@ public class CanonController : MonoBehaviour
         {
             HandleRotation();
 
-            if (canFireMissiles && missilePrefab != null) 
-            { 
-                if (Input.GetMouseButtonUp(0)) 
+            if (canFireMissiles && missilePrefab != null)
+            {
+                if (Input.GetMouseButtonUp(0))
                 {
                     FireMissile();
                 }
-                
+
             }
             else
             {
@@ -78,7 +85,7 @@ public class CanonController : MonoBehaviour
                 {
                     FireCannonBall();
                 }
-            } 
+            }
         }
     }
 
@@ -118,35 +125,43 @@ public class CanonController : MonoBehaviour
     // Fire cannon balls with the current power
     public void FireCannonBall()
     {
-        int projectilesFired = firePoints.Length;
-        foreach (Transform firePoint in firePoints)
+        if (Time.time > nextFire && isLoaded)
         {
-            GameObject cannonBall = Instantiate(cannonBallPrefab, firePoint.position, firePoint.rotation);
-            var collisionHandler = cannonBall.GetComponent<ProjectileCollisionHandler>();
-            if (collisionHandler != null)
+            isLoaded = false;
+            StartCoroutine(ReloadCannon());
+            int projectilesFired = firePoints.Length;
+            foreach (Transform firePoint in firePoints)
             {
-                collisionHandler.blastEffectPrefab = blastEffectPrefab;
+                GameObject cannonBall = Instantiate(cannonBallPrefab, firePoint.position, firePoint.rotation);
+                var collisionHandler = cannonBall.GetComponent<ProjectileCollisionHandler>();
+                if (collisionHandler != null)
+                {
+                    collisionHandler.blastEffectPrefab = blastEffectPrefab;
+                }
+
+                Rigidbody cannonBallRb = cannonBall.GetComponent<Rigidbody>();
+                if (cannonBallRb != null)
+                {
+                    cannonBallRb.AddForce(firePoint.forward * firingForce * currentPower);  // Apply force based on power
+                }
             }
 
-            Rigidbody cannonBallRb = cannonBall.GetComponent<Rigidbody>();
-            if (cannonBallRb != null)
+            // Reset power and update UI
+            if (!isAIControlled)
             {
-                cannonBallRb.AddForce(firePoint.forward * firingForce * currentPower);  // Apply force based on power
+                OnPlayerFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
             }
-        }
+            else
+            {
+                OnEnemyFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
+            }
 
-        // Reset power and update UI
-        if (!isAIControlled)
-        {
-            OnPlayerFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
-        }
-        else
-        {
-            OnEnemyFire?.Invoke("Cannonball", firingForce * currentPower, projectilesFired);
+            currentPower = 0f;
+            powerChargeUI.fillAmount = 0f;
         }
         currentPower = 0f;
         powerChargeUI.fillAmount = 0f;
-    } 
+    }
 
     // Fire missile as before
     public void FireMissile()
@@ -174,7 +189,15 @@ public class CanonController : MonoBehaviour
         {
             OnEnemyFire?.Invoke("Missile", missileSpeed, projectilesFired);
         }
-        
+
         powerChargeUI.fillAmount = 0f;
+    }
+
+    private float nextFire = 0.0f;
+
+    IEnumerator ReloadCannon()
+    {
+        yield return new WaitForSeconds(1f);
+        isLoaded = true;
     }
 }

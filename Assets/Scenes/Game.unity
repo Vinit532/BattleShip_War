@@ -4638,7 +4638,7 @@ PrefabInstance:
       objectReference: {fileID: 8199465228235915307, guid: 464ea6f56b66a9c43be02951bf902701, type: 3}
     - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: attackRange
@@ -4654,11 +4654,11 @@ PrefabInstance:
       objectReference: {fileID: 1032139848}
     - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: firingInterval
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7834207680357576122, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: minSafeDistance
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8830995186102304426, guid: bd6c2234f87d2fd4899cb006e6f38cbc, type: 3}
       propertyPath: m_Name
